@@ -12,8 +12,9 @@
 <body>
 	<h2>contact info</h2>
 
-	<form:form action="saveContact?contactId=${contact.contactId }" method="POST" modelAttribute="contact">
-	    ${sucMsg }
+	<form:form action="saveContact?contactId=${contact.contactId}" method="POST" modelAttribute="contact">
+	   <h3><font color='green'>${sucMsg}</font></h3>
+	     <font color='red'> ${failMSg}</font>
 		<table>
 
 			<tr>

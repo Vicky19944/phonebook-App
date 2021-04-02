@@ -1,6 +1,7 @@
 package com.api.phonebook.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,16 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.api.phonebook.entities.Contact;
+import com.api.phonebook.prop.AppProperties;
 import com.api.phonebook.service.ContactServiceImpl;
 
 @Controller
 public class ContactInfoController {
 
 	private ContactServiceImpl service;
+	private AppProperties props;
 
-	public ContactInfoController(ContactServiceImpl service) {
+	public ContactInfoController(ContactServiceImpl service, AppProperties props) {
 		super();
 		this.service = service;
+		this.props = props;
 	}
 
 	/*
@@ -42,12 +46,19 @@ public class ContactInfoController {
 
 	@PostMapping("/saveContact")
 	public String handleSubmitBtn(Contact contact, Model model) {
+		Integer cid = contact.getContactId();
 		boolean isSave = this.service.saveOrUpdateContact(contact);
+		Map<String, String> massages = props.getMassages();
 
 		if (isSave) {
-			model.addAttribute("sucMsg", "Contact is saved Successfully");
+			if (cid == null) {
+				model.addAttribute("sucMsg", massages.get("contactSaveSucc"));
+			} else {
+				model.addAttribute("sucMsg", massages.get("contactUpdateSucc"));
+
+			}
 		} else {
-			model.addAttribute("failed", "failed to save please try again...");
+			model.addAttribute("failed", massages.get("contactSaveFail"));
 		}
 		return "contact";
 	}

@@ -23,6 +23,8 @@ function confirmDelete(){
 	<h2>All Contacts</h2>
 	
 	<a href="load-form"> Add new contact</a>
+	<h3><font color='green'>${successDelete}</font></h3>
+	<font color="red">${failDelete}</font>
 
 	<table border="1">
 		<thead>
@@ -45,6 +47,7 @@ function confirmDelete(){
        <td>${contact.contactEmail}</td>
        <td>${contact.contactNumber}</td>
        <td>
+
           <a href="editContact?cid=${contact.contactId}">edit</a>
           <a href="deleteContact?cid=${contact.contactId}" onclick="return confirmDelete()">delete</a>
          </td>

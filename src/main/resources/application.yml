@@ -7,4 +7,13 @@ spring:
       mvc:    view:      prefix: /views/
       suffix: .jsp
       
-server:  port: 9090      
+server:  port: 9090     
+  
+phonebook: 
+  massages:
+    contactSaveSucc: Contact saved successfully
+    contactSaveFail: failed to save contact  
+    contactUpdateSucc: Contact updated successfully
+    contactDeleteSucc: Contact deleted successfully
+    contactDeleteFail: failed to delete contact
+   

@@ -64,6 +64,7 @@
 			<artifactId>jstl</artifactId>
 
 		</dependency>
+		
 	</dependencies>
 
 	<build>
